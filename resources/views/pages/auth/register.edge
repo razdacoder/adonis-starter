@@ -1,0 +1,26 @@
+@layout.app({title: 'Register'})
+@slot('meta')
+<meta name="description" content="Adonis Starter kit made by Ramon Rasheed Ishola">
+@endslot
+
+<main class="min-h-screen bg-slate-200 grid place-items-center">
+  <div class="space-y-4 w-96 flex flex-col items-center">
+    <img src="{{asset('resources/images/logo.svg')}}" alt="Logo">
+    <form action="" class="w-full shadow bg-white/90 p-6  rounded-md space-y-6">
+      @forms.input({label: "Name", name: "fullName"})
+      @end
+      @forms.input({label: "Email", name: "email", type: "email"})
+      @end
+      @forms.input({label: "Password", name: "password", type:"password"})
+      @end
+      @forms.input({label: "Confrim Password", name: "ConfirmPassword", type:"password"})
+      @end
+      <div class="flex justify-end items-center gap-x-4">
+        <a href="" class="text-slate-500 underline underline-offset-2 text-sm font-medium">Already have an account?</a>
+        @!component('components/button', { text: 'Register' })
+      </div>
+    </form>
+  </div>
+</main>
+
+@end

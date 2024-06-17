@@ -1,0 +1,8 @@
+<button type="{{ type || 'submit' }}"
+  class="{{
+  html.classNames([
+    'text-white bg-indigo-500 px-4 py-2 rounded-md uppercase text-sm font-medium',
+    {
+      'bg-rose-500' : variant==='danger', 'bg-emerald-500': variant==='success', 'bg-yellow-500': variant==='warning' }, ]) }}">
+  {{ text}}
+</button>

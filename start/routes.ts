@@ -18,7 +18,13 @@ router
   .group(() => {
     router.get('/register', [RegisterController, 'index']).as('register.index')
     router.get('/login', [LoginController, 'index']).as('login.index')
-    router.get('/reset-password', [ResetPasswordsController, 'index']).as('reset.index')
+    router
+      .group(() => {
+        router.get('/', [ResetPasswordsController, 'index']).as('index')
+        router.get('/confirm/:token', [ResetPasswordsController, 'show']).as('show')
+      })
+      .prefix('reset-password')
+      .as('reset')
   })
   .prefix('/auth')
   .as('auth')

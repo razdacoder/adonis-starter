@@ -7,9 +7,9 @@
 |
 */
 
-const RegisterController = () => import('#controllers/registers_controller')
-const LoginController = () => import('#controllers/login_controller')
-const ResetPasswordsController = () => import('#controllers/reset_passwords_controller')
+const RegisterController = () => import('#controllers/auth/registers_controller')
+const LoginController = () => import('#controllers/auth/login_controller')
+const ResetPasswordsController = () => import('#controllers/auth/reset_passwords_controller')
 import router from '@adonisjs/core/services/router'
 
 router.on('/').render('pages/home')

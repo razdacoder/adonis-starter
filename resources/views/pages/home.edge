@@ -1,0 +1,122 @@
+@layout.app({ title: "Home" })
+@slot('meta')
+<meta name="description" content="Adonis Starter kit made by Ramon Rasheed Ishola">
+@endslot
+
+<div class="min-h-screen bg-slate-200 ">
+  <header class="py-3 drop-shadow-sm border-b border-slate-300">
+    <div class="max-w-screen-xl h-full mx-auto flex justify-between items-center ">
+      <div class="flex gap-x-8 items-center">
+        <img src="{{ asset('resources/images/logo.svg') }}" alt="Logo" width="70" height="70">
+        <nav>
+          <ul class="flex gap-4">
+            <li class="h-full text-indigo-500 text-sm font-medium">
+              <a href="">Dashboard</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="relative" x-data="{ open: false }">
+        <button @click="open = ! open" type="button" class="flex items-center gap-x-2 ">
+          <span>Ramon Rasheed</span>
+          @svg('heroicons:chevron-down-16-solid', {width: 15, height: 15})
+        </button>
+
+        <div x-show="open" @click.outside="open = false" x-transition
+          class="absolute right-0 z-10 mt-2 w-56 origin-top-right bg-white shadow-lg" role="menu">
+          <div class="py-1 divide-y-2">
+            <a href="" class="flex items-center gap-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
+              role="menuitem">{{
+              svg('heroicons:user') }} Profile</a>
+            <a href="" class="flex items-center gap-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
+              role="menuitem">{{
+              svg('heroicons:arrow-right-end-on-rectangle') }} Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-screen-xl mx-auto my-6">
+    <h1 class="text-xl font-semibold">Dashboard</h1>
+
+    <div class="my-8  shadow bg-white/90">
+      <div class="p-6">
+        <div class="flex gap-x-6 items-center">
+          <img src="{{ asset('resources/images/logo.svg') }}" alt="Logo" width="70" height="70">
+          <h2 class="text-2xl font-normal"><span class="text-indigo-500 font-bold">Adonis</span> Starter Kit</h2>
+        </div>
+        <div class="my-6">
+          <h3 class="text-xl font-semibold mb-3">Welcome to your Adonis application!</h3>
+          <p class="text-sm leading-7">The Adonis Starter Kit is a beautifully designed application starter kit for
+            AdonisJS, featuring Tailwind CSS and
+            Session Auth, which provides a perfect starting point for your next application with pre-built features like
+            login,
+            registration, email verification, session management, and API support via Edge templates, as well as a
+            robust foundation
+            for building scalable and secure applications, complete with a modular architecture and a comprehensive set
+            of tools and
+            resources.</p>
+        </div>
+      </div>
+      <div class="border-t border-slate-300 grid grid-cols-2 p-6 gap-8">
+        <div class="space-y-3">
+          <div class="my-4 flex gap-x-4 items-center">
+            @svg('heroicons:book-open', {width: 30, height: 30})
+            <h4 class="text-xl font-medium">Documentation</h4>
+          </div>
+          <p class="text-sm leading-6 font-normal">Get the most out of AdonisJS with our comprehensive documentation!
+            Our docs cover everything from installation and setup
+            to advanced features and best practices. Whether you're a beginner or an experienced developer, our
+            documentation is
+            designed to help you master AdonisJS and build powerful applications efficiently. Check it out now and start
+            building!</p>
+          <a href="https://docs.adonisjs.com/"
+            class="flex items-center gap-x-2 text-sm font-medium text-indigo-500">Explore the documaentation {{
+            svg('heroicons:arrow-long-right') }}</a>
+        </div>
+        <div class="space-y-3">
+          <div class="my-4 flex gap-x-4 items-center">
+            @svg('heroicons:video-camera', {width: 30, height: 30})
+            <h4 class="text-xl font-medium">Adocasts</h4>
+          </div>
+          <p class="text-sm leading-6 font-normal">Take your AdonisJS skills to the next level with AdoCasts! Our
+            collection of video tutorials and screencasts covers a
+            wide range of topics, from basic concepts to advanced techniques. Learn from experienced developers and
+            improve your
+            coding skills. New videos are added regularly, so be sure to check back often. Start watching AdoCasts now
+            and become an
+            AdonisJS master!</p>
+          <a href="https://www.youtube.com/@Adocasts"
+            class="flex items-center gap-x-2 text-sm font-medium text-indigo-500">Start watching Adocasts {{
+            svg('heroicons:arrow-long-right') }}</a>
+        </div>
+
+        <div class="space-y-3">
+          <div class="my-4 flex gap-x-4 items-center">
+            @svg('heroicons:photo', {width: 30, height: 30})
+            <h4 class="text-xl font-medium">Tailwind CSS</h4>
+          </div>
+          <p class="text-sm leading-6 font-normal">Our starter kit comes with Tailwind CSS pre-installed, allowing you
+            to harness the power of utility-first CSS. Easily
+            style your application with Tailwind's intuitive classes, and customize your design with ease. With Tailwind
+            CSS, you
+            can focus on building great applications, not writing custom CSS.</p>
+        </div>
+
+        <div class="space-y-3">
+          <div class="my-4 flex gap-x-4 items-center">
+            @svg('heroicons:lock-closed', {width: 30, height: 30})
+            <h4 class="text-xl font-medium">Authentication</h4>
+          </div>
+          <p class="text-sm leading-6 font-normal">Our kit comes with pre-configured authentication functionality,
+            allowing you to quickly implement login, registration,
+            and password recovery features.Focus on building your app, not
+            reinventing the wheel. Get started with the Adonis Starter Kit today and authenticate
+            with confidence!</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+@end

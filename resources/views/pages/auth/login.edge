@@ -1,0 +1,38 @@
+@layout.app({title: 'Login'})
+@slot('meta')
+<meta name="description" content="Adonis Starter kit made by Ramon Rasheed Ishola">
+@endslot
+
+<main class="min-h-screen bg-slate-200 grid place-items-center">
+  <div class="space-y-4 w-96 flex flex-col items-center">
+    <img src="{{asset('resources/images/logo.svg')}}" alt="Logo">
+    <form action="" class="w-full shadow bg-white/90 p-6  rounded-md space-y-6">
+      <div class="space-y-2">
+        <h4 class="text-2xl font-semibold">Login</h4>
+        <p class="text-sm font-normal">Enter your credentials to login.</p>
+      </div>
+      @forms.input({label: "Email", name: "email", type: "email"})
+      @end
+      <div>
+        <div class="flex justify-end items-center">
+          <a href="{{ route('auth.reset.index') }}"
+            class="text-slate-500 underline underline-offset-2 text-sm font-medium">Forgot Password?</a>
+        </div>
+
+        @forms.input({label: "Password", name: "password", type:"password"})
+        @end
+      </div>
+
+      @forms.checkbox({label: "Remember me", name: "remember"})
+      @end
+
+      <div class="flex justify-end items-center gap-x-4">
+        <a href="{{ route('auth.register.index') }}"
+          class="text-slate-500 underline underline-offset-2 text-sm font-medium">Don't have an account?</a>
+        @!component('components/button', { text: 'Login' })
+      </div>
+    </form>
+  </div>
+</main>
+
+@end

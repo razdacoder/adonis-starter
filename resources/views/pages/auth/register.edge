@@ -7,6 +7,10 @@
   <div class="space-y-4 w-96 flex flex-col items-center">
     <img src="{{asset('resources/images/logo.svg')}}" alt="Logo">
     <form action="" class="w-full shadow bg-white/90 p-6  rounded-md space-y-6">
+      <div class="space-y-2">
+        <h4 class="text-2xl font-semibold">Register</h4>
+        <p class="text-sm font-normal">Enter your details below to create an account.</p>
+      </div>
       @forms.input({label: "Name", name: "fullName"})
       @end
       @forms.input({label: "Email", name: "email", type: "email"})
@@ -16,7 +20,8 @@
       @forms.input({label: "Confrim Password", name: "ConfirmPassword", type:"password"})
       @end
       <div class="flex justify-end items-center gap-x-4">
-        <a href="" class="text-slate-500 underline underline-offset-2 text-sm font-medium">Already have an account?</a>
+        <a href="{{ route('auth.login.index')}}"
+          class="text-slate-500 underline underline-offset-2 text-sm font-medium">Already have an account?</a>
         @!component('components/button', { text: 'Register' })
       </div>
     </form>

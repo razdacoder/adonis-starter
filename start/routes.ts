@@ -12,12 +12,14 @@ const LoginController = () => import('#controllers/auth/login_controller')
 const ResetPasswordsController = () => import('#controllers/auth/reset_passwords_controller')
 import router from '@adonisjs/core/services/router'
 
-router.on('/').render('pages/home')
+router.on('/').render('pages/home').as('home')
 
 router
   .group(() => {
-    router.get('/register', [RegisterController, 'index']).as('register.index')
-    router.get('/login', [LoginController, 'index']).as('login.index')
+    router.get('/register', [RegisterController, 'show']).as('register.show')
+    router.post('/register', [RegisterController, 'store']).as('register.store')
+
+    router.get('/login', [LoginController, 'show']).as('login.show')
     router
       .group(() => {
         router.get('/', [ResetPasswordsController, 'index']).as('index')

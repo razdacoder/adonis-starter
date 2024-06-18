@@ -1,4 +1,17 @@
+@let(valueOld = name ? old(name) : '')
+@let(value = $props.value || valueOld)
+
+
 <div class="flex flex-col gap-y-2">
-  <label class="text-sm font-medium" for="{{name}}">{{label}}</label>
-  <input type="{{type || 'text'}}" name="{{name}}" id="{{name}}" class="rounded-md">
+  <label class="text-sm font-medium" for="{{name || ''}}">{{label}}</label>
+  <input type="{{type || 'text'}}" name="{{name || ''}}" id="{{name || ''}}" value="{{ value || '' }}"
+    class="rounded-md">
+  @if(name)
+  @inputError(name)
+  @each(message in $messages)
+  <span class="text-xs text-red-500 flex items-center gap-x-1">{{ svg('heroicons:x-mark', {width: 12, height: 12}) }}
+    {{message}}</span>
+  @end
+  @end
+  @end
 </div>

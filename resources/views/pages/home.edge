@@ -16,9 +16,10 @@
           </ul>
         </nav>
       </div>
+      @if(auth.isAuthenticated)
       <div class="relative" x-data="{ open: false }">
         <button @click="open = ! open" type="button" class="flex items-center gap-x-2 ">
-          <span>Ramon Rasheed</span>
+          <span>{{ auth.user.fullName }}</span>
           @svg('heroicons:chevron-down-16-solid', {width: 15, height: 15})
         </button>
 
@@ -28,12 +29,17 @@
             <a href="" class="flex items-center gap-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
               role="menuitem">{{
               svg('heroicons:user') }} Profile</a>
-            <a href="" class="flex items-center gap-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
-              role="menuitem">{{
-              svg('heroicons:arrow-right-end-on-rectangle') }} Logout</a>
+            <form action="" method="POST">
+              <button class="w-full flex items-center gap-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
+                role="menuitem">{{
+                svg('heroicons:arrow-right-end-on-rectangle') }} Logout</button>
+            </form>
+
           </div>
         </div>
       </div>
+      @end
+
     </div>
   </header>
 

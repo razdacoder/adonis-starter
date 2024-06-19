@@ -1,0 +1,43 @@
+@layout.app({title: 'Verify Email'})
+@slot('meta')
+<meta name="description" content="Adonis Starter kit made by Ramon Rasheed Ishola">
+@endslot
+
+<main class="min-h-screen bg-slate-200 grid place-items-center">
+  <div class="space-y-4 w-96 flex flex-col items-center">
+    <img src="{{asset('resources/images/logo.svg')}}" alt="Logo">
+    <div class="w-full shadow bg-white/90 p-6  rounded-md space-y-6">
+      @if(isVerified)
+      <div class="flex justify-center items-center my-12">
+        @svg('line-md:circle-to-confirm-circle-transition', {
+        width: 100,
+        height: 100,
+        color: '#6366f1'
+        })
+      </div>
+
+      <div class="flex flex-col justify-center items-center gap-4">
+        <h4 class="text-xl font-medium">Account Verification Successful</h4>
+        <a href="{{ route('auth.login.show') }}"
+          class="text-slate-500 underline underline-offset-2 text-sm font-medium">Continue to login</a>
+      </div>
+      @else
+      <div class="flex justify-center items-center my-12">
+        @svg('line-md:close-circle', {
+        width: 100,
+        height: 100,
+        color: '#ef4444'
+        })
+      </div>
+
+      <div class="flex justify-center items-center gap-4">
+        <h4 class="text-xl font-medium">Account Verification Failed</h4>
+      </div>
+      @end
+
+
+    </div>
+  </div>
+</main>
+
+@end

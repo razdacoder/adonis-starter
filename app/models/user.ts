@@ -1,4 +1,5 @@
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
+import { DbRememberMeTokensProvider } from '@adonisjs/auth/session'
 import { compose } from '@adonisjs/core/helpers'
 import hash from '@adonisjs/core/services/hash'
 import { BaseModel, beforeCreate, column, hasMany } from '@adonisjs/lucid/orm'
@@ -51,4 +52,6 @@ export default class User extends compose(BaseModel, AuthFinder) {
   static assignUuid(user: User) {
     user.id = randomUUID()
   }
+
+  static rememberMeTokens = DbRememberMeTokensProvider.forModel(User)
 }

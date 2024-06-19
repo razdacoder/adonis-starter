@@ -6,7 +6,16 @@
 <main class="min-h-screen bg-slate-200 grid place-items-center">
   <div class="space-y-4 w-96 flex flex-col items-center">
     <img src="{{asset('resources/images/logo.svg')}}" alt="Logo">
-    <form action="" class="w-full shadow bg-white/90 p-6  rounded-md space-y-6">
+    <form method="POST" action="{{ route('auth.login.store') }}"
+      class="w-full shadow bg-white/90 p-6  rounded-md space-y-6">
+      {{ csrfField() }}
+
+      @error('E_INVALID_CREDENTIALS')
+      <div class="bg-red-500 p-2 rounded-sm text-white text-sm font-medium">
+        {{ $message }}
+      </div>
+      @end
+
       <div class="space-y-2">
         <h4 class="text-2xl font-semibold">Login</h4>
         <p class="text-sm font-normal">Enter your credentials to login.</p>
@@ -23,7 +32,7 @@
         @end
       </div>
 
-      @forms.checkbox({label: "Remember me", name: "remember"})
+      @forms.checkbox({label: "Remember me", name: "remember_me"})
       @end
 
       <div class="flex justify-end items-center gap-x-4">

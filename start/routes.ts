@@ -28,6 +28,7 @@ router
       .use(middleware.guest())
 
     router.get('/login', [LoginController, 'show']).as('login.show').use(middleware.guest())
+    router.post('/login', [LoginController, 'store']).as('login.store').use(middleware.guest())
     router.get('/verify-email/:token', [VerifyEmailsController, 'show']).as('verify.show')
     // router.get('/verify-email', [LoginController, 'show']).as('verify.show')
     router

@@ -79,7 +79,7 @@
         <p class="text-sm">Permanently delete your account.</p>
       </div>
       <div class="bg-white p-6 rounded-md drop-shadow-sm">
-        <form action="" method="POST">
+        <form action="{{ route('me.destroy') }}" method="POST">
           {{ csrfField() }}
           <div class="space-y-4">
             <p class="text-sm font-normal text-slate-400">Once your account is deleted. All your data will be

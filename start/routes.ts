@@ -38,6 +38,7 @@ router
     router.get('/', [UsersController, 'index']).as('index')
     router.post('/update-profile', [UsersController, 'update_profile']).as('update_profile')
     router.post('/update-password', [UsersController, 'update_password']).as('update_password')
+    router.post('/delete', [UsersController, 'destroy']).as('destroy')
   })
   .prefix('/me')
   .as('me')

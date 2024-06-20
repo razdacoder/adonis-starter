@@ -49,7 +49,12 @@ export default class UsersController {
   }
 
   // /**
-  //  * Delete record
+  //  * Delete user
   //  */
-  // async destroy({ params }: HttpContext) {}
+  async destroy({ response, auth }: HttpContext) {
+    const user = await auth.getUserOrFail()
+    await user.delete()
+    await auth.use('web').logout()
+    return response.redirect().toRoute('auth.login.show')
+  }
 }

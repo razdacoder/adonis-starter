@@ -2,10 +2,10 @@
 @let(value = $props.value || valueOld)
 
 
-<div class="flex flex-col gap-y-2">
+<div class="flex flex-col gap-y-1.5">
   <label class="text-sm font-medium" for="{{name || ''}}">{{label}}</label>
   <input type="{{type || 'text'}}" name="{{name || ''}}" id="{{name || ''}}" value="{{ value || '' }}"
-    class="rounded-md">
+    class="rounded-md py-1.5">
   @if(name)
   @inputError(name)
   @each(message in $messages)

@@ -7,12 +7,41 @@
 |
 */
 
+import app from '@adonisjs/core/services/app'
 import router from '@adonisjs/core/services/router'
+import { normalize, sep } from 'node:path'
 import { middleware } from './kernel.js'
+const UsersController = () => import('#controllers/users_controller')
 const AuthController = () => import('#controllers/auth_controller')
 const HomeController = () => import('#controllers/home_controller')
 
+const PATH_TRAVERSAL_REGEX = /(?:^|[\\/])\.\.(?:[\\/]|$)/
+
+router
+  .get('/uploads/*', ({ request, response }) => {
+    const filePath = request.param('*').join(sep)
+    const normalizedPath = normalize(filePath)
+
+    if (PATH_TRAVERSAL_REGEX.test(normalizedPath)) {
+      return response.badRequest('Malformed path')
+    }
+
+    const absolutePath = app.makePath('uploads', normalizedPath)
+    return response.download(absolutePath)
+  })
+  .as('upload')
+
 router.get('/', [HomeController, 'index']).as('home').use(middleware.auth())
+
+router
+  .group(() => {
+    router.get('/', [UsersController, 'index']).as('index')
+    router.post('/update-profile', [UsersController, 'update_profile']).as('update_profile')
+    router.post('/update-password', [UsersController, 'update_password']).as('update_password')
+  })
+  .prefix('/me')
+  .as('me')
+  .use(middleware.auth())
 
 router
   .group(() => {

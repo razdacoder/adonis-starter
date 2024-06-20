@@ -1,0 +1,102 @@
+@layout.app({ title: "Home" })
+@slot('meta')
+<meta name="description" content="Adonis Starter kit made by Ramon Rasheed Ishola">
+@endslot
+
+<div class="min-h-screen bg-slate-200 ">
+  @include('components/layout/nav')
+
+  <main class="max-w-screen-xl mx-auto py-6">
+    <h1 class="text-xl font-semibold">Profile</h1>
+
+    <div class="my-6 grid grid-cols-2 space-x-8">
+      <div class="space-y-2">
+        <h4 class="text-xl font-normal text-slate-500">Profile Information</h4>
+        <p class="text-sm">Update your account's profile information and email address.</p>
+      </div>
+      <div class="bg-white p-6 rounded-md drop-shadow-sm">
+        <form action="{{ route('me.update_profile') }}" method="POST" enctype="multipart/form-data">
+          {{ csrfField() }}
+          <div class="space-y-6">
+            <div class="space-y-3">
+              @if(auth.user.avatarUrl)
+              <img src="{{ route('upload', [auth.user.avatarUrl])}}" alt="{{ auth.user.fullName }}"
+                class="size-12 rounded-full">
+              @else
+              @let(initial = auth.user.fullName.split(" "))
+              <div
+                class="size-12 rounded-full text-white bg-indigo-500/50 text-lg font-semibold flex justify-center items-center">
+                {{ initial[0][0] }}{{ initial[1][0] }}
+              </div>
+              @endif
+
+              <div class="space-y-2">
+                <input type="file" id="image" name="avatar" class="hidden">
+                <label for="image" class="uppercase text-xs cursor-pointer font-medium border p-2 rounded-sm">Select a
+                  new
+                  photo</label>
+              </div>
+            </div>
+            @!forms.input({ label: "Name", name: "fullName", value: auth.user.fullName })
+            @!forms.input({ label: "Email", name: "email", type: "email", value: auth.user.email })
+
+            <div class="flex justify-end items-center">
+              @!component('components/button', { text: 'Save' })
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <div class="my-6 grid grid-cols-2 space-x-8">
+      <div class="space-y-2">
+        <h4 class="text-xl font-normal text-slate-500">Update Password</h4>
+        <p class="text-sm">Ensure your account is using long and strong password to stay secure.</p>
+      </div>
+      <div class="bg-white  rounded-md p-6 drop-shadow-sm">
+        <form action="{{ route('me.update_password') }}" method="POST">
+          {{ csrfField() }}
+
+          <div class="space-y-6">
+            @!forms.input({label: "Current Password", name: "currentPassword", type: "password"})
+            @!forms.input({label: "New Password", name: "password", type: "password"})
+            @!forms.input({label: "Confirm Password", name: "password_confirmation", type: "password"})
+
+            <div class="flex justify-end items-center">
+              @!component('components/button', { text: 'Save' })
+            </div>
+          </div>
+
+
+        </form>
+      </div>
+    </div>
+
+    <div class="my-3 grid grid-cols-2 space-x-8">
+      <div class="space-y-2">
+        <h4 class="text-xl font-normal text-slate-500">Delete Account</h4>
+        <p class="text-sm">Permanently delete your account.</p>
+      </div>
+      <div class="bg-white p-6 rounded-md drop-shadow-sm">
+        <form action="" method="POST">
+          {{ csrfField() }}
+          <div class="space-y-4">
+            <p class="text-sm font-normal text-slate-400">Once your account is deleted. All your data will be
+              permanently
+              deleted. Before deleting your account
+              backup any important data.</p>
+
+            <div class="flex justify-start items-center">
+              @!component('components/button', { text: 'Delete', variant: 'danger' })
+            </div>
+          </div>
+
+
+        </form>
+      </div>
+    </div>
+
+  </main>
+</div>
+@end

@@ -7,7 +7,7 @@ import {
   registerValidator,
   resetPasswordConfirmValidator,
   resetPasswordValidator,
-} from '#validators/user'
+} from '#validators/auth'
 import type { HttpContext } from '@adonisjs/core/http'
 import mail from '@adonisjs/mail/services/main'
 

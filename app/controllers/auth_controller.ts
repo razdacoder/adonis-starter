@@ -8,6 +8,7 @@ import {
   resetPasswordConfirmValidator,
   resetPasswordValidator,
 } from '#validators/auth'
+import { errors } from '@adonisjs/auth'
 import type { HttpContext } from '@adonisjs/core/http'
 import mail from '@adonisjs/mail/services/main'
 
@@ -50,6 +51,9 @@ export default class AuthController {
   async login_store({ auth, request, response }: HttpContext) {
     const { email, password } = await request.validateUsing(loginValidator)
     const user = await User.verifyCredentials(email, password)
+    if (!user.isActive) {
+      throw new errors.E_INVALID_CREDENTIALS('Invalid user credentials')
+    }
     await auth.use('web').login(user, !!request.input('remember_me'))
     response.redirect().toRoute('home')
   }

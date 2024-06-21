@@ -36,10 +36,8 @@ npm run dev
 
 Contributors names and contact info
 
-ex. Dominique Pizzie  
+ex. Ramon Rasheed  
 ex. [@CodeRazzy](https://twitter.com/code_razzy)
-
-## Version History
 
 ## License
 
